@@ -45,26 +45,34 @@ def compare():
   elif calculate_score(comp_cards) < calculate_score(user_cards):
     print("You win!")
 
-play_blackjack = input("Would you like to play Blackjack? Type y or n: ")
-while play_blackjack == "y":
-  #clear()
-  #print(logo)
-  print(f"Your cards are {user_cards}, with a total {sum(user_cards)}")
-  print(f"Computer cards are {comp_cards}, with a total {sum(comp_cards)}")
-  keep_playing = input("Would you like another card? y or n?\n")
-  while keep_playing == "y":
-    user_cards.append(dealcard())
-    print(f"Your cards are {user_cards}, with a total {sum(user_cards)}")
-    keep_playing = input("Would you like another card? y or n?\n")
 
-  comp_total = calculate_score(comp_cards)
-  while comp_total < 17:
-    comp_cards.append(dealcard())
-    comp_total = calculate_score(comp_cards)
-  print(f"Comp cards are {comp_cards}, with a total {sum(comp_cards)}")
-  compare()
+def clear_cards():
+  user_cards.clear()
+  comp_cards.clear()
+
+
+is_on = True
+while is_on:
   play_blackjack = input("Would you like to play Blackjack? Type y or n: ")
+  if play_blackjack == "y":
+    clear_cards()
+    #print(logo)
+    print(f"Your cards are {user_cards}, with a total {sum(user_cards)}")
+    print(f"Computer cards are {comp_cards}, with a total {sum(comp_cards)}")
+    keep_playing = input("Would you like another card? y or n?\n")
+    while keep_playing == "y":
+      user_cards.append(dealcard())
+      print(f"Your cards are {user_cards}, with a total {sum(user_cards)}")
+      keep_playing = input("Would you like another card? y or n?\n")
 
+    comp_total = calculate_score(comp_cards)
+    while comp_total < 17:
+      comp_cards.append(dealcard())
+      comp_total = calculate_score(comp_cards)
+    print(f"Comp cards are {comp_cards}, with a total {sum(comp_cards)}")
+    compare()
+  else:
+    is_on = False
 
 
 
